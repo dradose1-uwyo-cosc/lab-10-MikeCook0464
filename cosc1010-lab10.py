@@ -1,9 +1,9 @@
-# Your Name Here
+# Michael Cook
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
+# Submission Date 11/18/24
+# Lab 10
+# Lab Section: 16
+# Sources, people worked with, help given to: Bob Cook(Brother) he helped me with geting the the hash to work and compair.
 # your
 # comments
 # here
@@ -17,7 +17,19 @@ def get_hash(to_hash):
     """You can use """
     return sha256(to_hash.encode('utf-8')).hexdigest().upper()
 
+with open("./hash") as target_hash:
+  hash_content = target_hash.read().strip()
 
+  try:
+    with open("./rockyou.txt", "r") as wordlist_file:
+      for password in wordlist_file:
+        password = password.strip()
+        password_hash = get_hash(password)
+        if password_hash == hash_content:
+          print(f"Password found: {password}")
+          break 
+  except Exception as e:
+    print(f"An error occurred while reading 'rockyou.txt': {e}")
 
 # Files and Exceptions
 
